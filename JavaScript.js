@@ -2,9 +2,10 @@ let isPlaying = false;
 const musik = document.getElementById('bg-musik');
 const btnMusik = document.getElementById('btn-musik');
 
-musik.volume = 0.5;
+musik.volume = 0.3;
 
 function toggleMusik() {
+    musik.volume = 0.3;
     if (isPlaying) {
         musik.pause();
         btnMusik.innerHTML = "🎵 off";
@@ -22,9 +23,10 @@ function toggleMusik() {
 
 const originalMulaiCerita = window.mulaiCerita;
 window.mulaiCerita = function() {
+    musik.volume = 0.3;
     if (!isPlaying) {
         musik.play().then(() => {
-            btnMusik.innerHTML = "🎶 Musik: Nyala";
+            btnMusik.innerHTML = "🎶 on";
             isPlaying = true;
         }).catch(e => {});
     }
