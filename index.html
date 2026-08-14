@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title></title>
+    <title>Untukmu Kesayanganku</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Great+Vibes&display=swap" rel="stylesheet">
     
@@ -13,7 +13,7 @@
         body {
             background: linear-gradient(-45deg, #0a0812, #141021, #1e172e, #291e36);
             background-size: 400% 400%;
-            animation: gradientBG 25s ease infinite; /* Diperlambat agar semakin rileks */
+            animation: gradientBG 25s ease infinite; 
             color: #fffdfa; 
             font-family: 'Playfair Display', serif;
             display: flex;
@@ -31,13 +31,11 @@
             100% { background-position: 0% 50%; }
         }
 
-        /* --- Kanvas Bunga Latar Belakang (Dibuat Lebih Jarang & Lembut) --- */
         #flower-canvas {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
             z-index: 1; pointer-events: none;
         }
 
-        /* --- Efek Cahaya Kunang-kunang (Dikurangi & Dibuat Halus) --- */
         #bokeh-container { position: absolute; top: 0; left: 0; width: 100%; height: 100%; overflow: hidden; z-index: 0; pointer-events: none; }
         .bokeh-circle {
             position: absolute; bottom: -50px;
@@ -51,7 +49,6 @@
             100% { transform: translateY(-100vh) scale(1.5) translateX(15px); opacity: 0; }
         }
 
-        /* --- Jejak Kursor Ajaib --- */
         .magic-trail {
             position: absolute; width: 10px; height: 10px;
             background: #ffb6c1; border-radius: 50%;
@@ -64,11 +61,9 @@
             100% { opacity: 0; transform: scale(0) translateY(20px); }
         }
 
-        /* --- Kontainer Utama --- */
         .container { width: 100%; max-width: 900px; padding: 30px; position: relative; z-index: 10; height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; }
         .hidden { display: none !important; }
 
-        /* --- Tombol --- */
         button {
             background: rgba(255, 182, 193, 0.1); color: #ffd1dc; border: 1px solid #ffb6c1;
             padding: 12px 35px; font-size: 1.1em; font-family: 'Playfair Display', serif;
@@ -77,12 +72,31 @@
         }
         button:hover { background: rgba(255, 182, 193, 0.3); color: #fff; box-shadow: 0 0 20px rgba(255, 182, 193, 0.5); transform: translateY(-3px); }
 
-        /* --- Tampilan Awal --- */
+        #btn-musik {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            background: rgba(255, 182, 193, 0.2);
+            color: #ffd1dc;
+            border: 1px solid #ffb6c1;
+            padding: 8px 15px;
+            font-size: 0.9em;
+            border-radius: 20px;
+            cursor: pointer;
+            backdrop-filter: blur(5px);
+            transition: all 0.3s ease;
+            margin-top: 0;
+        }
+        #btn-musik:hover {
+            background: rgba(255, 182, 193, 0.5);
+            color: #fff;
+        }
+
         #halaman-awal { transition: opacity 1.5s ease; }
         #halaman-awal h1 { font-family: 'Great Vibes', cursive; font-size: 5.5em; color: #ffb6c1; margin-bottom: 20px; text-shadow: 0 0 20px rgba(255, 154, 158, 0.6); }
         #halaman-awal p { font-size: 1.3em; color: #e8d5dd; font-style: italic; }
 
-        /* --- Area Cerita --- */
         #cerita-container { position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; opacity: 0; transition: opacity 1.5s ease; padding: 20px; }
         
         .foto-frame {
@@ -93,9 +107,6 @@
         }
         .foto-frame img { width: 100%; height: 100%; object-fit: cover; filter: sepia(10%) contrast(110%); border-radius: 2px; }
 
-        /* =========================================
-           ANIMASI BUNGA KOMPLEKS CSS (CORNER)
-           ========================================= */
         .ornament-flower {
             position: absolute; width: 100px; height: 100px; z-index: 10;
         }
@@ -141,15 +152,12 @@
         .elemen-aktif .flower-center { animation: centerBloom 1s cubic-bezier(0.34, 1.56, 0.64, 1) forwards 1.2s; }
         @keyframes centerBloom { 0% { transform: scale(0); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
 
-        /* ========================================= */
 
-        /* Divider */
         .floral-divider { font-size: 1.5em; color: #ffb6c1; margin-bottom: 15px; opacity: 0; transform: translateY(20px); transition: all 1.5s ease 0.3s; animation: pulse-flower 3s ease-in-out infinite; }
         @keyframes pulse-flower { 0%, 100% { transform: scale(1); opacity: 0.7; } 50% { transform: scale(1.2); opacity: 1; text-shadow: 0 0 15px rgba(255, 182, 193, 0.8); } }
 
         .teks-panjang { max-width: 700px; font-size: 1.25em; line-height: 1.8; color: #f2f2f2; text-shadow: 0 2px 4px rgba(0,0,0,0.8); transform: translateY(20px); opacity: 0; transition: all 1.5s ease 0.5s; }
 
-        /* --- Surat Final --- */
         #surat-final { opacity: 0; transition: opacity 2s ease; max-width: 700px; padding: 50px; border: 1px solid rgba(255, 182, 193, 0.2); background: rgba(22, 18, 30, 0.75); backdrop-filter: blur(12px); border-radius: 15px; box-shadow: 0 20px 50px rgba(0,0,0,0.9), inset 0 0 20px rgba(255, 182, 193, 0.1); }
         #surat-final h2 { font-family: 'Great Vibes', cursive; font-size: 4.5em; color: #ffb6c1; margin-bottom: 25px; text-shadow: 0 0 15px rgba(255, 182, 193, 0.4); }
         #surat-final p { font-size: 1.25em; line-height: 1.9; margin-bottom: 20px; color: #e8d5dd; }
@@ -157,7 +165,6 @@
 
         .elemen-aktif { opacity: 1 !important; transform: translateY(0) !important; }
 
-        /* Responsif HP */
         @media (max-width: 600px) {
             #halaman-awal h1 { font-size: 4em; }
             .foto-frame { width: 220px; height: 280px; margin-bottom: 30px; }
@@ -174,24 +181,26 @@
 </head>
 <body>
 
-    <!-- Latar Belakang Interaktif HTML5 Canvas -->
+    <audio id="bg-musik" loop>
+        <source src="musik.mp3" type="audio/mp3">
+        Browser Anda tidak mendukung elemen audio.
+    </audio>
+
+    <button id="btn-musik" onclick="toggleMusik()">🎵 Musik: Mati</button>
+
     <canvas id="flower-canvas"></canvas>
     
-    <!-- Cahaya Taman -->
     <div id="bokeh-container"></div>
 
     <div class="container">
-        <!-- 1. Tampilan Awal -->
         <div id="halaman-awal">
             <p>Buat kamu, kesayanganku.</p>
             <button onclick="mulaiCerita()">Baca</button>
         </div>
 
-        <!-- 2. Area Cerita -->
         <div id="cerita-container" class="hidden">
             <div class="foto-frame" id="frame-foto">
                 
-                <!-- HIASAN BUNGA KOMPLEKS SUDUT KIRI ATAS -->
                 <div class="ornament-flower top-left">
                     <div class="petal-layer outer">
                         <div class="petal" style="--rot: 0deg; --delay: 0.1s;"></div>
@@ -218,7 +227,7 @@
 
                 <img id="gambar-tampil" src="" alt="Kenangan">
 
-                <!-- HIASAN BUNGA KOMPLEKS SUDUT KANAN BAWAH -->
+
                 <div class="ornament-flower bottom-right">
                     <div class="petal-layer outer">
                         <div class="petal" style="--rot: 0deg; --delay: 0.5s;"></div>
@@ -250,20 +259,49 @@
             <button id="btn-lanjut" onclick="slideSelanjutnya()" style="opacity: 0; transform: translateY(20px); transition: all 1s ease 1.5s;">Lanjut ➔</button>
         </div>
 
-        <!-- 3. Surat Cinta Final -->
         <div id="surat-final" class="hidden">
             <p>Kalau ditanya apa hadiah terbaik yang pernah aku dapetin, jawabannya adalah kamu. Kehadiran kamu dalam hidupku adalah rasa syukur yang ga berhenti kusyukuri.</p>
             <p>Terimakasih sudah lahir ke dunia, terimakasih sudah bertahan sejauh ini, Terimakasih sudah menjadi sosok yang membuat setiap hari hariku jadi lebih berarti</p>
-            <p>Semoga segala doa terbaik, kesehatan, dan impian impianmu segera terwujud. Semoga usia baru ini membawa kekuatan baru, mimpi-mimpi yang lebih besar, dan kebahagiaan yang tidak ada habisnya. Tetaplah bersinar dan tetaplah menjadi dirimu yang luar biasa.</p>
+            <p>Semoga segala doa terbaik, kesehatan, dan impian impianmu segera terwujud. Semoga usia baru ini membawa kekuatan baru, mimpi mimpi yang lebih besar, dan kebahagiaan yang tidak ada habisnya. Tetaplah bersinar dan tetaplah menjadi dirimu yang luar biasa.</p>
             <p>Seelamat ulang tahun, Love.</p>
             <button onclick="ulangiCerita()" style="font-size: 0.9em; padding: 10px 25px;">Kembali ↺</button>
         </div>
     </div>
 
     <script>
-        // ==========================================
-        // 1. LOGIKA KANVAS: BUNGA LATAR BELAKANG (DIPERHALUS & DIJARANGKAN)
-        // ==========================================
+
+        let isPlaying = false;
+        const musik = document.getElementById('bg-musik');
+        const btnMusik = document.getElementById('btn-musik');
+
+        function toggleMusik() {
+            if (isPlaying) {
+                musik.pause();
+                btnMusik.innerHTML = "🎵 Musik: Mati";
+                isPlaying = false;
+            } else {
+                musik.play().then(() => {
+                    btnMusik.innerHTML = "🎶 Musik: Nyala";
+                    isPlaying = true;
+                }).catch(error => {
+                    console.log("Gagal memutar audio:", error);
+                });
+            }
+        }
+
+
+        const originalMulaiCerita = window.mulaiCerita;
+        window.mulaiCerita = function() {
+            if (!isPlaying) {
+                musik.play().then(() => {
+                    btnMusik.innerHTML = "🎶 Musik: Nyala";
+                    isPlaying = true;
+                }).catch(e => {});
+            }
+            originalMulaiCerita(); 
+        };
+
+
         const canvas = document.getElementById('flower-canvas');
         const ctx = canvas.getContext('2d');
         
@@ -293,7 +331,6 @@
                 ctx.translate(this.x, this.y);
                 ctx.rotate(this.rotation + this.life * 0.002); 
 
-                // Transparansi diturunkan maks 0.3 agar tidak terlalu mencolok/ramai
                 let alpha = this.phase === 'fading' ? Math.max(0, 1 - (this.life - 300) / 150) : Math.min(0.3, this.size / this.maxSize);
                 ctx.fillStyle = this.color + alpha + ')';
 
@@ -316,7 +353,7 @@
             update() {
                 this.life++;
                 if (this.phase === 'growing') {
-                    this.size += (this.maxSize - this.size) * 0.02; // Tumbuh lebih pelan
+                    this.size += (this.maxSize - this.size) * 0.02; 
                     if (this.maxSize - this.size < 0.5) {
                         this.phase = 'fading';
                         this.life = 300; 
@@ -331,7 +368,6 @@
         function animateCanvas() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             
-            // Frekuensi kemunculan bunga diperjarang (dari 0.03 menjadi 0.012, max 8 bunga)
             if (Math.random() < 0.012 && canvasFlowers.length < 8) {
                 canvasFlowers.push(new CanvasFlower());
             }
@@ -346,11 +382,9 @@
         }
         animateCanvas();
 
-        // ==========================================
-        // 2. EFEK CAHAYA (BOKEH) & JEJAK KURSOR
-        // ==========================================
+ 
         const bokehContainer = document.getElementById('bokeh-container');
-        for (let i = 0; i < 18; i++) { // Jumlah bokeh dikurangi setengahnya agar bersih
+        for (let i = 0; i < 18; i++) { 
             let bokeh = document.createElement('div');
             bokeh.classList.add('bokeh-circle');
             let ukuran = Math.random() * 50 + 15; 
@@ -373,9 +407,7 @@
             setTimeout(() => { trail.remove(); }, 800); 
         }
 
-        // ==========================================
-        // 3. LOGIKA CERITA (SLIDESHOW)
-        // ==========================================
+
         const ceritaKita = [
             {
                 foto: "g1.png",
