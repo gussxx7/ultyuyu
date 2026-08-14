@@ -2,14 +2,16 @@ let isPlaying = false;
 const musik = document.getElementById('bg-musik');
 const btnMusik = document.getElementById('btn-musik');
 
+musik.volume = 0.5;
+
 function toggleMusik() {
     if (isPlaying) {
         musik.pause();
-        btnMusik.innerHTML = "🎵 Musik: Mati";
+        btnMusik.innerHTML = "🎵 off";
         isPlaying = false;
     } else {
         musik.play().then(() => {
-            btnMusik.innerHTML = "🎶 Musik: Nyala";
+            btnMusik.innerHTML = "🎶 on";
             isPlaying = true;
         }).catch(error => {
             console.log("Gagal memutar audio:", error);
@@ -17,7 +19,7 @@ function toggleMusik() {
     }
 }
 
-// Opsional: Musik otomatis menyala saat tombol "Buka Lembaran" diklik pertama kali
+
 const originalMulaiCerita = window.mulaiCerita;
 window.mulaiCerita = function() {
     if (!isPlaying) {
@@ -26,5 +28,5 @@ window.mulaiCerita = function() {
             isPlaying = true;
         }).catch(e => {});
     }
-    originalMulaiCerita(); // Memanggil fungsi mulai cerita yang lama
+    originalMulaiCerita();
 };
